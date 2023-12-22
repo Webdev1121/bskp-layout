@@ -1,7 +1,21 @@
+
 <link href="https://countdown.bskp.fbp.my.id/daisyui.css" rel="stylesheet" type="text/css" />
 <script src="https://countdown.bskp.fbp.my.id/tailwindcss.js"></script>
-
+<style>
+        /* Add the following styles to make the text centered and responsive */
+        #output_text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+    </style>
 <div class="navbar bg-base-100">
+
   <div class="flex-1">
     <a class="btn btn-ghost text-3xl font-bold">Ganti Nama Bioskop</a>
       <button class="btn btn-accent -mx-3 my-8 h-10 text-xl font-mono ml-1"><a href="https://github.com/Webdev1121/bskp-layout" target="_blank">Coded by 1121Kbps</a></button>
@@ -22,19 +36,25 @@
     </ul>
   </div>
 </div>
+<div role="alert" class="alert alert-info rounded-none">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <span>Text Preview ga tengah ga ngaruh, kan?</span>
+</div>
 <div class="grid bg-base-200 w-screen h-screen">
-<div class="grid bg-base-200 w-screen h-screen ml-12" style="position:absolute;z-index:100%" >
+<div class="grid bg-base-200 w-screen h-screen ml-20" style="position:absolute;z-index:100%" >
   <h1 class="ml-6 font-black text-4xl my-36">Ganti Nama</h1>
   <label class="textarea textarea-primary w-96 h-14 ml-6 -mt-48"  for="textbox">Ketik nama Bioskop mu! contoh: Bioskop Melif
      <input type="text" id="textbox" class="rounded-md bg-base-300">
      <button onclick="saveToLocalStorage()" class="bg-success text-black rounded-xl w-14 h-9">Simpan</button>
   </label>
       <h1 class="ml-6 font-black text-4xl -mt-44">Preview</h1>
-      <label class="textarea textarea-primary w-96 h-48 my-3 ml-6 -mt-48" ><img src="https://media.discordapp.net/attachments/1158724028350091344/1187397898040782878/Screenshot_2023_1221_221459.jpg?ex=6596bd77&is=65844877&hm=dfbadec936c479743a574301faca8cb0bf9f901797a26a01aeb53db72ebe2462&=&format=webp" class="card">
-      <div style="position:absolute;z-index:100%"><h1 class="-mt-28 ml-40 text-2xl justify-center font-black" id="output_text">ANIS</h1></div>
-      
-            <h1 class="ml-[400px] font-black text-4xl -mt-64">Pewarnaan</h1><button onclick="rainbowText()" class="btn btn-success ml-[460px]" style="position:absolute;z-index:100%">RGB</button><input type="color" style="position:absolute;z-index:100%" id="colorPicker" class="ml-[400px] mt-3" onchange="changeColor()">
-      </label>
+      <label class="textarea textarea-primary w-96 h-48 my-1 ml-6 -mt-44" ><img src="https://media.discordapp.net/attachments/1158724028350091344/1187397898040782878/Screenshot_2023_1221_221459.jpg?ex=6596bd77&is=65844877&hm=dfbadec936c479743a574301faca8cb0bf9f901797a26a01aeb53db72ebe2462&=&format=webp" class="card">
+      <div style="position:absolute;z-index:100%" class="grid"><h1 class=" -mt-48 ml-8 content-center text-2xl font-black" id="output_text">Cinema</h1></div>
+            <h1 class="ml-[400px] font-black text-4xl -mt-64">Pewarnaan</h1><button onclick="rainbowText()" class="btn btn-success ml-[460px]" style="position:absolute;z-index:100%">RGB</button>
+            
+<button onclick="stopRainbowText()" class="btn btn-error ml-[530px]" style="position:absolute;z-index:100%">Clear RGB</button>
+        <input type="color" style="position:absolute;z-index:100%" id="colorPicker" class="ml-[400px] mt-3" onchange="changeColor()">
+        <button class="btn btn-secondary ml-[401px] mt-14 w-56">Pasang 💵Lp100</button>
     <script>
         // Function to save textbox value to localStorage
         function saveToLocalStorage() {
@@ -76,9 +96,13 @@
         var colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'];
         var colorIndex = 0;
 
-        setInterval(function () {
+        rainbowInterval = setInterval(function () {
             outputText.style.color = colors[colorIndex];
             colorIndex = (colorIndex + 1) % colors.length;
         }, 500);
+    }
+
+    function stopRainbowText() {
+        clearInterval(rainbowInterval);  // Clear the interval using the stored ID
     }
 </script>
